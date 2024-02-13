@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter Color Changer</title>
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+     flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background-color: #9ec862;
+    }
+    #counter {
+      font-size: 48px;
+      color: #333;
+    }
+
+    #counter.positive {
+      color: green;
+    }
+
+    #counter.negative {
+      color: red;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #d98345;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="counter">0</div>
+  <div class="buttonfield">
+    <button id="decreaseBtn">Decrease</button>
+    <button id="resetBtn">Reset</button>
+  <button id="increaseBtn">Increase</button>
+  </div>
+
+  <script>
+    let count = 0;
+
+  const counterElement = document.getElementById('counter');
+  const increaseButton = document.getElementById('increaseBtn');
+  const resetButton = document.getElementById('resetBtn')
+  const decreaseButton = document.getElementById('decreaseBtn'); 
+
+  const updateCounterColor = () => {
+      if (count > 0) {
+        counterElement.classList.remove('negative');
+        counterElement.classList.add('positive');
+      } else if (count < 0) {
+        counterElement.classList.remove('positive');
+        counterElement.classList.add('negative');
+      } else {
+        counterElement.classList.remove('positive', 'negative');
+      }
+    };
+
+    const increaseCounter = () => {
+      count++;
+      counterElement.textContent = count;
+      updateCounterColor();
+    };
+    const reset = () => {
+      count = 0;
+      counterElement.textContent = count;
+      updateCounterColor();
+    }
+    const decreaseCounter = () => {
+      count--;
+      counterElement.textContent = count;
+      updateCounterColor();
+    };
+    increaseButton.addEventListener('click', increaseCounter);
+    resetButton.addEventListener('click' ,reset);
+    decreaseButton.addEventListener('click', decreaseCounter);
+
+  </script>
+  
+</body>
+</html>
